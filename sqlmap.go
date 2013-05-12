@@ -28,10 +28,8 @@ func Query(db *sql.DB, query string) (ResultSet, error) {
 			dest[i] = &values[i]
 		}
 		rows.Scan(dest...)
-		for _, col := range cols {
-			for _, v := range values {
-				result[col] = v
-			}
+		for i, value := range values {
+			result[cols[i]] = value
 		}
 		results = append(results, result)
 	}
